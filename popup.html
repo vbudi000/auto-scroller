@@ -79,55 +79,13 @@
       font-size: 11px;
     }
 
-    .divider {
-      border: none;
-      border-top: 1px solid #e5e7eb;
-      margin: 16px 0;
-    }
-
-    .btn-row {
-      display: flex;
-      gap: 8px;
-    }
-
-    button {
-      flex: 1;
-      padding: 8px 0;
-      border: none;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.15s;
-    }
-
-    button:active { opacity: 0.8; }
-
-    #btn-start {
-      background: #3b82d4;
-      color: #fff;
-    }
-
-    #btn-stop {
-      background: #e5e7eb;
-      color: #1f2328;
-    }
-
-    #btn-start:disabled,
-    #btn-stop:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-
-    #status {
+    .hint {
       margin-top: 12px;
-      text-align: center;
-      font-size: 12px;
+      font-size: 11px;
       color: #57606a;
-      min-height: 16px;
+      text-align: center;
+      line-height: 1.5;
     }
-
-    #status.running { color: #3b82d4; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -157,14 +115,7 @@
     </div>
   </div>
 
-  <hr class="divider" />
-
-  <div class="btn-row">
-    <button id="btn-start">▶ Start</button>
-    <button id="btn-stop" disabled>■ Stop</button>
-  </div>
-
-  <div id="status">Idle</div>
+  <p class="hint">Use the widget on the page<br>to start &amp; stop scrolling.</p>
 
   <script src="popup.js"></script>
 </body>
