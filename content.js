@@ -4,7 +4,7 @@
   window.__autoScrollerInit = true;
 
   let timerId  = null;
-  let interval = 500;
+  let interval = 5000;
   let amount   = 100;
 
   // ── Scroll engine ──────────────────────────────────────────────────────────
@@ -12,7 +12,7 @@
   function startScroll() {
     stopScroll();
     timerId = setInterval(() => {
-      window.scrollBy({ top: amount, behavior: 'instant' });
+      window.scrollBy({ top: amount, behavior: 'smooth' });
       const atBottom =
         window.innerHeight + Math.round(window.scrollY) >= document.body.scrollHeight;
       if (atBottom) {
