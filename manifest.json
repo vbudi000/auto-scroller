@@ -1,13 +1,22 @@
 {
   "manifest_version": 3,
   "name": "Auto Scroller",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Automatically scrolls the current page at a configurable speed and distance.",
   "permissions": [
     "activeTab",
     "scripting",
     "storage"
   ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "block_iframes",
+        "enabled": true,
+        "path": "rules/block_iframes.json"
+      }
+    ]
+  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
