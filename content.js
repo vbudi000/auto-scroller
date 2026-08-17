@@ -3,51 +3,35 @@
   if (window.__autoScrollerInit) return;
   window.__autoScrollerInit = true;
 
-  let rafId    = null;   // requestAnimationFrame handle
-  let interval = 5000;  // ms — time to scroll one "amount" worth of pixels
-  let amount   = 100;   // px — pixels to scroll per interval
+  let timerId  = null;
+  let interval = 5000;  // ms between each scroll step
+  let amount   = 100;   // px per scroll step
 
-  // ── Scroll engine (rAF-based for smooth continuous motion) ─────────────────
-
-  // Converts interval+amount into a pixels-per-millisecond speed,
-  // then advances the scroll position every frame proportionally.
+  // ── Scroll engine ──────────────────────────────────────────────────────────
 
   function startScroll() {
     stopScroll();
-    let lastTime = null;
-
-    function frame(ts) {
-      if (lastTime === null) lastTime = ts;
-      const delta = ts - lastTime;
-      lastTime = ts;
-
-      // pixels to advance this frame
-      const step = (amount / interval) * delta;
-      window.scrollBy(0, step);
+    timerId = setInterval(() => {
+      window.scrollBy({ top: amount, behavior: 'smooth' });
 
       const atBottom =
         window.innerHeight + Math.round(window.scrollY) >= document.body.scrollHeight;
       if (atBottom) {
         stopScroll();
         setWidgetState(false);
-        return;
       }
-
-      rafId = requestAnimationFrame(frame);
-    }
-
-    rafId = requestAnimationFrame(frame);
+    }, interval);
     setWidgetState(true);
   }
 
   function stopScroll() {
-    if (rafId !== null) {
-      cancelAnimationFrame(rafId);
-      rafId = null;
+    if (timerId !== null) {
+      clearInterval(timerId);
+      timerId = null;
     }
   }
 
-  function isRunning() { return rafId !== null; }
+  function isRunning() { return timerId !== null; }
 
   // ── Floating widget ────────────────────────────────────────────────────────
 

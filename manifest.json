@@ -8,15 +8,6 @@
     "scripting",
     "storage"
   ],
-  "declarative_net_request": {
-    "rule_resources": [
-      {
-        "id": "block_iframes",
-        "enabled": true,
-        "path": "rules/block_iframes.json"
-      }
-    ]
-  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
