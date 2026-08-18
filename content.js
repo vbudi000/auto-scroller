@@ -13,7 +13,7 @@
     stopScroll();
     timerId = setInterval(() => {
       window.scrollBy({ top: amount, behavior: 'smooth' });
-
+      clear_iframe();
       const atBottom =
         window.innerHeight + Math.round(window.scrollY) >= document.body.scrollHeight;
       if (atBottom) {
@@ -22,6 +22,13 @@
       }
     }, interval);
     setWidgetState(true);
+  }
+
+  function clear_iframe() {
+    const nodes = document.querySelectorAll('.wtr-ads');
+    nodes.forEach((el) => {
+      el.innerHTML = "";
+    });
   }
 
   function stopScroll() {
